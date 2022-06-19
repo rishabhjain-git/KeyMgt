@@ -20,7 +20,7 @@ const EditCustomer = () => {
 
   const updateCustomer = async (e) => {
     e.preventDefault();
-    await axios.patch(`https://04cf-2405-201-d006-8087-6406-60-d6cb-c534.in.ngrok.io/customers/${id}`, {
+    await axios.patch(`http://localhost:5000/customers/${id}`, {
       name: name,
       address: address,
       mobile: mobile,
@@ -38,14 +38,14 @@ const EditCustomer = () => {
 
   useEffect(() => {
     if (window.localStorage.getItem("token-info") === null) {
-      window.location.href = "https://e480-2405-201-d006-8087-2818-b5e1-dde6-140e.in.ngrok.io/";
+      window.location.href = "http://localhost:3000/";
     } else {
       getProductById();
     }
   }, []);
 
   const getProductById = async () => {
-    const response = await axios.get(`https://04cf-2405-201-d006-8087-6406-60-d6cb-c534.in.ngrok.io/customers/${id}`);
+    const response = await axios.get(`http://localhost:5000/customers/${id}`);
     setName(response.data.name);
     setAddress(response.data.address);
     setMobile(response.data.mobile);
@@ -61,16 +61,15 @@ const EditCustomer = () => {
 
   return (
     <div>
-      <h1>
+      <h5>
         <b>Edit Customer</b>
-      </h1>
+      </h5>
       <form onSubmit={updateCustomer}>
         <div className="form-control">
           <label className="label">Name</label>
           <input
             className="form-control"
             type="text"
-            placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -79,7 +78,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
@@ -88,7 +86,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Mobile"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
           />
@@ -97,7 +94,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="ProductId"
             value={productId}
             onChange={(e) => setProductId(e.target.value)}
           />
@@ -106,7 +102,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Vechicle Model"
             value={vechicleModel}
             onChange={(e) => setVechicleModel(e.target.value)}
           />
@@ -115,7 +110,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Vechicle Number"
             value={vechicleNumber}
             onChange={(e) => setVechicleNumber(e.target.value)}
           />
@@ -124,7 +118,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
@@ -133,7 +126,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="keyNumber"
             value={keyNumber}
             onChange={(e) => setkeyNumber(e.target.value)}
           />
@@ -142,7 +134,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Bank Name"
             value={bankName}
             onChange={(e) => setBankName(e.target.value)}
           />
@@ -151,7 +142,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="Essential Document"
             value={essentialDoc}
             onChange={(e) => setEssentialDoc(e.target.value)}
           />
@@ -160,7 +150,6 @@ const EditCustomer = () => {
           <input
             className="form-control"
             type="text"
-            placeholder="ProductCreationLoc"
             value={prodLoc}
             onChange={(e) => setProdLoc(e.target.value)}
           />
