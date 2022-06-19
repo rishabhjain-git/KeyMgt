@@ -17,7 +17,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post(`https://04cf-2405-201-d006-8087-6406-60-d6cb-c534.in.ngrok.io/customers/login`, {
+    const response = await axios.post(`http://localhost:5000/customers/login`, {
       username: name,
       password: password,
     });
