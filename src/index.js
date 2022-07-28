@@ -6,14 +6,15 @@ import cors from "cors";
 const app = express();
 
 try {
-    await db.authenticate();
-    console.log('Database connected...');
+  await db.authenticate();
+  console.log("Database connected...");
 } catch (error) {
-    console.error('Connection error:', error);
+  console.error("Connection error:", error);
 }
 
 app.use(cors());
 app.use(express.json());
-app.use('/customers', productRoutes);
+app.use("/customers", productRoutes);
+app.use("/images", express.static("./images"));
 
-app.listen(5000, () => console.log('Server running at port 5000'));
+app.listen(5000, () => console.log("Server running at port 5000"));

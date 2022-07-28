@@ -14,6 +14,7 @@ const AddCustomer = () => {
   const [keyNumber, setkeyNumber] = useState("");
   const [bankName, setBankName] = useState("");
   const [essentialDoc, setEssentialDoc] = useState("");
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,20 +25,23 @@ const AddCustomer = () => {
 
   const saveCustomer = async (e) => {
     e.preventDefault();
-    await axios.post(`http://localhost:5000/customers`, {
-      id: Math.floor(Math.random() * 100000 + 1),
-      name: name,
-      address: address,
-      mobile: mobile,
-      product_id: productId,
-      product_creation_loc: prodLoc,
-      vechicle_model: vechicleModel,
-      vechicle_number: vechicleNumber,
-      amount: amount,
-      key_number: keyNumber,
-      bank_name: bankName,
-      essential_doc: essentialDoc,
-    });
+    const formData = new FormData();
+
+    formData.append("id", Math.floor(Math.random() * 100000 + 1));
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("mobile", mobile);
+    formData.append("product_id", productId);
+    formData.append("product_creation_loc", prodLoc);
+    formData.append("vechicle_model", vechicleModel);
+    formData.append("vechicle_number", vechicleNumber);
+    formData.append("amount", amount);
+    formData.append("key_number", keyNumber);
+    formData.append("bank_name", bankName);
+    formData.append("essential_doc", essentialDoc);
+    formData.append("image", image);
+
+    await axios.post(`http://localhost:5000/customers`, formData);
     navigate("/home");
   };
 
@@ -47,7 +51,12 @@ const AddCustomer = () => {
         <b>Add Customer</b>
       </h5>
 
-      <form class="form-inline" onSubmit={saveCustomer}>
+      <form
+        class="form-inline"
+        onSubmit={saveCustomer}
+        method="POST"
+        encType="multipart/form-data"
+      >
         <div className="form-control">
           <label className="label">Name</label>
           <input
@@ -133,6 +142,15 @@ const AddCustomer = () => {
             type="text"
             value={prodLoc}
             onChange={(e) => setProdLoc(e.target.value)}
+          />
+
+          <label className="label">Customer Picture</label>
+          <input
+            className="form-control"
+            type="file"
+            name="image"
+            width="100" height="200"
+            onChange={(e) => setImage(e.target.files[0])}
           />
 
           <div className="form-control">

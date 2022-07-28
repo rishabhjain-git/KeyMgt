@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Container, Grid } from "@mui/material";
+import { Button, ButtonGroup, Container, Grid, Link } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,29 @@ const CustomerList = () => {
 
   const columns = [
     { field: "index", headerName: "S.No.", width: 20 },
-    { field: "name", headerName: "Name", width: 120 },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 120,
+      renderCell: (cellValues) => {
+        return (
+          <Link
+            component="button"
+            variant="body2"
+            onClick={() =>
+              navigate("/profile", {
+                state: {
+                  id: cellValues.row.id,
+                  name: cellValues.row.name,
+                },
+              })
+            }
+          >
+            {cellValues.row.name}
+          </Link>
+        );
+      },
+    },
     { field: "address", headerName: "Address", width: 120 },
     { field: "mobile", headerName: "Mobile" },
     { field: "product_id", headerName: "ProductId" },
@@ -21,7 +43,7 @@ const CustomerList = () => {
     { field: "amount", headerName: "Amount" },
     { field: "key_number", headerName: "Key Number" },
     { field: "bank_name", headerName: "Bank" },
-    { field: "product_creation_loc", headerName: "Location", width: 120  },
+    { field: "product_creation_loc", headerName: "Location", width: 120 },
     { field: "essential_doc", headerName: "Documents" },
     {
       field: "Actions",
@@ -94,12 +116,16 @@ const CustomerList = () => {
             variant="contained"
             aria-label="outlined primary button group"
           >
-            <Button variant="outlined"  onClick={() => navigate(`/add`)}>
+            <Button variant="outlined" onClick={() => navigate(`/add`)}>
               Add
             </Button>
-            <Button  disabled={selectedRow.id ===undefined } onClick={() => deleteCustomers(selectedRow.id)}>Delete</Button>
+            <Button
+              disabled={selectedRow.id === undefined}
+              onClick={() => deleteCustomers(selectedRow.id)}
+            >
+              Delete
+            </Button>
           </ButtonGroup>
-         
 
           <button
             style={{ float: "right" }}

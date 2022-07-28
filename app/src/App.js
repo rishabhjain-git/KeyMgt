@@ -3,6 +3,7 @@ import ProductList from "./components/CustomerList";
 import AddProduct from "./components/AddCustomer";
 import EditProduct from "./components/EditCustomer";
 import Login from "./components/Login";
+import CustomerProfile from "./components/CustomerProfile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/home" element={<ProductList />} />
               <Route path="/add" element={<AddProduct />} />
+              <Route path="/profile" element={<CustomerProfile />} />
               <Route path="/edit/:id" element={<EditProduct />} />
             </Routes>
           </div>
