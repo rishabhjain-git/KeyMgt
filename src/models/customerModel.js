@@ -18,25 +18,28 @@ const Customer = db.define(
     product_id: {
       type: DataTypes.STRING,
     },
-    vechicle_model:{
-      type: DataTypes.STRING
+    vechicle_model: {
+      type: DataTypes.STRING,
     },
-    vechicle_number:{
-      type: DataTypes.STRING
+    vechicle_number: {
+      type: DataTypes.STRING,
     },
-    amount:{
-      type: DataTypes.DECIMAL
+    amount: {
+      type: DataTypes.DECIMAL,
     },
-    key_number:{
-      type: DataTypes.STRING
+    key_number: {
+      type: DataTypes.STRING,
     },
-    bank_name:{
-      type:  DataTypes.STRING
+    bank_name: {
+      type: DataTypes.STRING,
     },
-    essential_doc:{
-      type:  DataTypes.STRING
+    essential_doc: {
+      type: DataTypes.STRING,
     },
     product_creation_loc: {
+      type: DataTypes.STRING,
+    },
+    image: {
       type: DataTypes.STRING,
     },
   },

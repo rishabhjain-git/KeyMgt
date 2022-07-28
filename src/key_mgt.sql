@@ -41,6 +41,7 @@ CREATE TABLE `customers` (
   `bank_name` varchar(155) DEFAULT NULL,
   `product_creation_loc` varchar(255) DEFAULT NULL,
   `essential_doc` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `createdAt` date DEFAULT NULL,
   `updatedAt` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
