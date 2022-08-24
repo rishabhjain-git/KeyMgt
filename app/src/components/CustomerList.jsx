@@ -26,6 +26,7 @@ const CustomerList = () => {
                 state: {
                   id: cellValues.row.id,
                   name: cellValues.row.name,
+                  address: cellValues.row.address,
                 },
               })
             }
@@ -35,16 +36,17 @@ const CustomerList = () => {
         );
       },
     },
-    { field: "address", headerName: "Address", width: 120 },
+    { field: "createdAt", headerName: "Created Date", width: 100 },
+    { field: "address", headerName: "Address", width: 100 },
     { field: "mobile", headerName: "Mobile" },
     { field: "product_id", headerName: "ProductId" },
     { field: "vechicle_model", headerName: "Vehicle Model", width: 120 },
     { field: "vechicle_number", headerName: "Vehicle Number", width: 120 },
-    { field: "amount", headerName: "Amount" },
-    { field: "key_number", headerName: "Key Number" },
-    { field: "bank_name", headerName: "Bank" },
-    { field: "product_creation_loc", headerName: "Location", width: 120 },
-    { field: "essential_doc", headerName: "Documents" },
+    { field: "amount", headerName: "Amount", width: 90 },
+    { field: "key_number", headerName: "Key Number", width: 90 },
+    { field: "bank_name", headerName: "Bank", width: 90 },
+    { field: "product_creation_loc", headerName: "Location", width: 80 },
+    { field: "essential_doc", headerName: "Documents", width: 90 },
     {
       field: "Actions",
       headerName: "Actions",
@@ -124,6 +126,11 @@ const CustomerList = () => {
               onClick={() => deleteCustomers(selectedRow.id)}
             >
               Delete
+            </Button>
+            <Button
+             onClick={() => navigate(`/calc`)}
+            >
+              Calculate
             </Button>
           </ButtonGroup>
 

@@ -30,13 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `mobile` bigint(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
   `product_id` varchar(255) DEFAULT NULL,
   `vechicle_model` varchar(255) DEFAULT NULL,
   `vechicle_number` varchar(255) DEFAULT NULL,
-  `amount` decimal(6,2) DEFAULT NULL,
+  `amount` decimal(10,2) NOT NULL,
   `key_number` varchar(155)  DEFAULT NULL,
   `bank_name` varchar(155) DEFAULT NULL,
   `product_creation_loc` varchar(255) DEFAULT NULL,

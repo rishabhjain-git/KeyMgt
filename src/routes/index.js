@@ -2,6 +2,7 @@ import express from "express";
 
 import {
   getAllCustomers,
+  getCustomersByDate,
   createCustomer,
   getCustomerById,
   updateCustomer,
@@ -15,6 +16,7 @@ const router = express.Router();
 
 router.post("/login", login);
 router.get("/", getAllCustomers);
+router.get("/records/:date", getCustomersByDate);
 router.get("/:id", getCustomerById);
 router.post("/", upload, createCustomer);
 router.patch("/:id", updateCustomer);

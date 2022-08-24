@@ -24,9 +24,25 @@ export const getCustomerById = async (req, res) => {
   }
 };
 
-export const createCustomer = async (req, res) => {
-  console.log("req.file is...",req.file.path);
+export const getCustomersByDate = async (req, res) => {
   try {
+    const data = await customer.findAll({
+      where: {
+        createdAt: new Date(req.params.date),
+      },
+    });
+    res.json(data);
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
+export const createCustomer = async (req, res) => {
+  try {
+    let path = null;
+    if (req?.file?.path) {
+      path = req.file.path;
+    }
     let info = {
       id: req.body.id,
       name: req.body.name,
@@ -40,7 +56,7 @@ export const createCustomer = async (req, res) => {
       key_number: req.body.key_number,
       bank_name: req.body.bank_name,
       essential_doc: req.body.bank_name,
-      image: req.file.path,
+      image: path,
     };
     await customer.create(info);
     res.json({
