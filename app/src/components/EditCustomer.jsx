@@ -14,26 +14,32 @@ const EditCustomer = () => {
   const [amount, setAmount] = useState("");
   const [keyNumber, setkeyNumber] = useState("");
   const [bankName, setBankName] = useState("");
+  const [error, setError] = useState(false);
   const [essentialDoc, setEssentialDoc] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
   const updateCustomer = async (e) => {
-    e.preventDefault();
-    await axios.patch(`http://localhost:5000/customers/${id}`, {
-      name: name,
-      address: address,
-      mobile: mobile,
-      product_id: productId,
-      product_creation_loc: prodLoc,
-      vechicle_model: vechicleModel,
-      vechicle_number: vechicleNumber,
-      amount: amount,
-      key_number: keyNumber,
-      bank_name: bankName,
-      essential_doc: essentialDoc,
-    });
-    navigate("/home");
+    if (name === "" || amount === "") {
+      setError(true);
+    } else {
+      e.preventDefault();
+      await axios.patch(`http://localhost:5000/customers/${id}`, {
+        name: name,
+        address: address,
+        mobile: mobile,
+        product_id: productId,
+        product_creation_loc: prodLoc,
+        vechicle_model: vechicleModel,
+        vechicle_number: vechicleNumber,
+        amount: amount,
+        key_number: keyNumber,
+        bank_name: bankName,
+        essential_doc: essentialDoc,
+      });
+      setError(false);
+      navigate("/home");
+    }
   };
 
   useEffect(() => {
@@ -73,6 +79,13 @@ const EditCustomer = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <div>
+            {
+              <span className="text-danger">
+                {error && amount === "" ? `Name is mandatory field.` : ""}
+              </span>
+            }
+          </div>
 
           <label className="label">Address</label>
           <input
@@ -121,6 +134,13 @@ const EditCustomer = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
+          <div>
+            {
+              <span className="text-danger">
+                {error && amount === "" ? `Amount is mandatory field.` : ""}
+              </span>
+            }
+          </div>
 
           <label className="label">Key Number</label>
           <input

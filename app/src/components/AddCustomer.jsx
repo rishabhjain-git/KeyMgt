@@ -15,6 +15,8 @@ const AddCustomer = () => {
   const [bankName, setBankName] = useState("");
   const [essentialDoc, setEssentialDoc] = useState("");
   const [image, setImage] = useState("");
+  const [error, setError] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,24 +27,28 @@ const AddCustomer = () => {
 
   const saveCustomer = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
+    if (name === "" || amount === "") {
+      setError(true);
+    } else {
+      const formData = new FormData();
+      formData.append("id", Math.floor(Math.random() * 100000 + 1));
+      formData.append("name", name);
+      formData.append("address", address);
+      formData.append("mobile", mobile);
+      formData.append("product_id", productId);
+      formData.append("product_creation_loc", prodLoc);
+      formData.append("vechicle_model", vechicleModel);
+      formData.append("vechicle_number", vechicleNumber);
+      formData.append("amount", amount);
+      formData.append("key_number", keyNumber);
+      formData.append("bank_name", bankName);
+      formData.append("essential_doc", essentialDoc);
+      formData.append("image", image);
 
-    formData.append("id", Math.floor(Math.random() * 100000 + 1));
-    formData.append("name", name);
-    formData.append("address", address);
-    formData.append("mobile", mobile);
-    formData.append("product_id", productId);
-    formData.append("product_creation_loc", prodLoc);
-    formData.append("vechicle_model", vechicleModel);
-    formData.append("vechicle_number", vechicleNumber);
-    formData.append("amount", amount);
-    formData.append("key_number", keyNumber);
-    formData.append("bank_name", bankName);
-    formData.append("essential_doc", essentialDoc);
-    formData.append("image", image);
-
-    await axios.post(`http://localhost:5000/customers`, formData);
-    navigate("/home");
+      await axios.post(`http://localhost:5000/customers`, formData);
+      setError(false);
+      navigate("/home");
+    }
   };
 
   return (
@@ -65,6 +71,14 @@ const AddCustomer = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <div>
+            {
+              <span className="text-danger">
+                {error && name === "" ? `Name is mandatory field.` : ""}
+              </span>
+            }
+          </div>
+
           <label className="label">Address</label>
           <input
             className="form-control"
@@ -111,6 +125,13 @@ const AddCustomer = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
+          <div>
+            {
+              <span className="text-danger">
+                {error && amount === "" ? `Amount is mandatory field.` : ""}
+              </span>
+            }
+          </div>
 
           <label className="label">Key Number</label>
           <input
@@ -149,7 +170,8 @@ const AddCustomer = () => {
             className="form-control"
             type="file"
             name="image"
-            width="100" height="200"
+            width="100"
+            height="200"
             onChange={(e) => setImage(e.target.files[0])}
           />
 

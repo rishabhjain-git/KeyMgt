@@ -4,6 +4,7 @@ import AddProduct from "./components/AddCustomer";
 import EditProduct from "./components/EditCustomer";
 import Login from "./components/Login";
 import CustomerProfile from "./components/CustomerProfile";
+import CustomerCalc from "./components/CustomerCalc";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/home" element={<ProductList />} />
+              <Route path="/calc" element={<CustomerCalc />} />
               <Route path="/add" element={<AddProduct />} />
               <Route path="/profile" element={<CustomerProfile />} />
               <Route path="/edit/:id" element={<EditProduct />} />

@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Container, Grid } from "@mui/material"
+import { Button, ButtonGroup, Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -38,13 +38,26 @@ const CustomerProfile = () => {
             </Button>
           </ButtonGroup>
           <div>
-            <h4>{location.state.name}</h4>
-            <img
-              alt="Customer Profile"
-              src={`http://localhost:5000/${customerImg}`}
-              width="200" height="200"
-              fluid
-            />
+            <div>
+              <span>
+                <b>Name: </b>
+                {location.state.name}
+              </span>
+            </div>
+            <div>
+              <img
+                alt="Customer Profile"
+                src={`http://localhost:5000/${customerImg}`}
+                width="200"
+                height="200"
+                fluid
+              />
+            </div>
+            <div>
+              <span>
+                <b>Address: </b> {location.state.address}
+              </span>
+            </div>
           </div>
         </Grid>
       </Grid>
