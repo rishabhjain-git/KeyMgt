@@ -5,7 +5,7 @@ This project is implemented for storing the customer record in database. We can 
 
 Install ```mysql``` and ```Start mysqlserver```
 
-Create db table using key_mgt.sql table
+Create db tables as customers and users using key_mgt.sql table
 
 Start server execute the below command
 
